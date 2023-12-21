@@ -1,9 +1,11 @@
 cmake_minimum_required(VERSION 3.28)
-project(SubGame C)
+project(SubGame)
+
+set(CMAKE_CXX_STANDARD 20)
 
 find_package(raylib REQUIRED)
 
-file(GLOB_RECURSE SRC src/*.c)
+file(GLOB_RECURSE SRC src/*.cpp)
 
 add_executable(${PROJECT_NAME} ${SRC})
 

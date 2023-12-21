@@ -1,21 +1,23 @@
-#ifndef PLAYER_H
-#define PLAYER_H
+#pragma once
 
 #include <raylib.h>
-#include <raymath.h>
 
-typedef struct Player{
-    Vector2 pos;
-    Vector2 velocity;
-    float maxVelocity;
-    float acceleration;
-    float friction;
-} Player;
+class Player{
+public:
+    Player(Vector2 Pos, float Acceleration, float MaxSpeed, float Friction);
+    ~Player();
 
-Player* CreatePlayer(Vector2 Position, float MaxVelocity, float Acceleration, float Friction);
-void DestroyPlayer(Player* player);
+    void PlayerUpdate(const float deltaT);
+    void PlayerRender() const;
 
-void PlayerMovement(Player* player, float delta);
-void RenderPlayer(const Player* player);
+    inline Vector2 GetPlayerPos() const { return _pos; }
+    inline Vector2& GetPlayerVelocity() { return _velocity; }
+    inline float& GetPlayerAcceleration() { return _acceleration; }
 
-#endif
+private:
+    Vector2 _pos;
+    Vector2 _velocity{0, 0};
+    float _acceleration;
+    float _maxSpeed;
+    float _friction;
+};
